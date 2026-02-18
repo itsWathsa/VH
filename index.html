@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinnath's Dashboard | Life in the Fast Lane</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dashboard-black': '#0a0a0a',
+                        'carbon-fiber': '#141414',
+                        'neon-blue': '#00f3ff',
+                        'neon-red': '#ff003c',
+                        'rpm-green': '#39ff14',
+                    },
+                    fontFamily: {
+                        'sans': ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                        'display': ['Orbitron', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-text-blue {
+            text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+        }
+        .neon-box-blue {
+            box-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff inset;
+        }
+        .speedometer-bg {
+             background: radial-gradient(circle at center, #1a1a1a 0%, #000 70%);
+        }
+    </style>
+</head>
+<body class="bg-dashboard-black text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="brand-font text-2xl font-bold text-neon-blue tracking-tighter">VINNATH<span class="text-white">.OS</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium border border-neon-blue shadow-[0_0_10px_rgba(0,243,255,0.3)]">Dashboard</a>
+                        <a href="love.html" class="text-gray-300 hover:text-neon-red hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Co-Pilot</a>
+                        <a href="goals.html" class="text-gray-300 hover:text-rpm-green hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">The Roadmap</a>
+                        <a href="games.html" class="text-gray-300 hover:text-yellow-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Pit Stop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-fixed bg-no-repeat">
+        <div class="text-center px-4 max-w-4xl mx-auto relative z-10">
+            <h2 class="text-neon-blue text-lg md:text-xl font-bold tracking-widest mb-4 uppercase animate-pulse">System Status: Online</h2>
+            <h1 class="brand-font text-5xl md:text-8xl font-black mb-6 leading-tight">
+                WELCOME BACK, <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">DRIVER</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-2xl mb-10 max-w-2xl mx-auto font-light">
+                "The road ahead is long, but you are built for the journey. Keep your eyes on the horizon."
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="goals.html" class="group relative px-8 py-4 bg-transparent overflow-hidden rounded-md border border-neon-blue text-neon-blue font-bold tracking-widest transition-all hover:bg-neon-blue hover:text-black hover:shadow-[0_0_20px_rgba(0,243,255,0.6)]">
+                    <span class="relative z-10">CHECK ENGINE</span>
+                </a>
+                <a href="love.html" class="group relative px-8 py-4 bg-transparent overflow-hidden rounded-md border border-neon-red text-neon-red font-bold tracking-widest transition-all hover:bg-neon-red hover:text-black hover:shadow-[0_0_20px_rgba(255,0,60,0.6)]">
+                    <span class="relative z-10">MESSAGE FROM HQ</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute w-96 h-96 bg-neon-blue rounded-full mix-blend-overlay filter blur-[128px] opacity-20 -top-20 -left-20 animate-pulse"></div>
+            <div class="absolute w-96 h-96 bg-neon-red rounded-full mix-blend-overlay filter blur-[128px] opacity-20 -bottom-20 -right-20 animate-pulse animation-delay-2000"></div>
+        </div>
+    </div>
+
+    <!-- Motivational Section -->
+    <section class="py-20 bg-dashboard-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 brand-font">MISSION SPECS</h2>
+                <div class="h-1 w-24 bg-neon-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-xl transform hover:-translate-y-2 transition-all duration-300 border-l-4 border-neon-blue">
+                    <div class="text-neon-blue text-4xl mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Power</h3>
+                    <p class="text-gray-400">You have an engine that never quits. When things get tough, remember your horsepower.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-xl transform hover:-translate-y-2 transition-all duration-300 border-l-4 border-rpm-green">
+                    <div class="text-rpm-green text-4xl mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Performance</h3>
+                    <p class="text-gray-400">Every small step is a rev in the right direction. Keep the momentum going.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-xl transform hover:-translate-y-2 transition-all duration-300 border-l-4 border-neon-red">
+                    <div class="text-neon-red text-4xl mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Support Crew</h3>
+                    <p class="text-gray-400">You are never driving alone. I am right here in the passenger seat. Forever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 font-mono text-sm">DESIGNED WITH LOVE BY HASINI • FOR VINNATH</p>
+            <p class="text-gray-700 text-xs mt-2">© 2024 VH RACING TEAM</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pit Stop | Relax & Recharge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dashboard-black': '#0a0a0a',
+                        'neon-yellow': '#facc15',
+                        'neon-blue': '#00f3ff',
+                        'neon-red': '#ff003c',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+        }
+
+        .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .game-card {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .mole-hole {
+            width: 100%;
+            height: 100px;
+            background: #222;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #333;
+        }
+
+        .mole {
+            width: 60%;
+            height: 80%;
+            background: #ff003c;
+            border-radius: 20px;
+            position: absolute;
+            bottom: -100%;
+            left: 20%;
+            transition: bottom 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .mole.up {
+            bottom: 0;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #facc15;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-dashboard-black min-h-screen text-white select-none">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html"
+                        class="brand-font text-2xl font-bold text-neon-blue tracking-tighter hover:text-white transition-colors">VINNATH<span
+                            class="text-white">.OS</span></a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html"
+                            class="text-gray-300 hover:text-neon-blue hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dashboard</a>
+                        <a href="love.html"
+                            class="text-gray-300 hover:text-neon-red hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">Co-Pilot</a>
+                        <a href="goals.html"
+                            class="text-gray-300 hover:text-green-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">The
+                            Roadmap</a>
+                        <a href="games.html"
+                            class="bg-gray-900 text-neon-yellow px-3 py-2 rounded-md text-sm font-medium border border-neon-yellow shadow-[0_0_10px_rgba(250,204,21,0.3)]">Pit
+                            Stop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-12 max-w-6xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-black brand-font mb-2 text-center text-neon-yellow">PIT STOP ARCADE</h1>
+        <p class="text-center text-gray-400 mb-12">Take a break. Refuel your mind.</p>
+
+        <!-- Game Selection Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button onclick="switchGame('memory')" id="tab-memory"
+                class="px-6 py-3 rounded-full border border-neon-blue bg-neon-blue/10 text-neon-blue hover:bg-neon-blue hover:text-black font-bold transition-all active-tab">MEMORY
+                RACER</button>
+            <button onclick="switchGame('whack')" id="tab-whack"
+                class="px-6 py-3 rounded-full border border-neon-red bg-neon-red/10 text-neon-red hover:bg-neon-red hover:text-black font-bold transition-all">ENGINE
+                REPAIR</button>
+            <button onclick="switchGame('breathing')" id="tab-breathing"
+                class="px-6 py-3 rounded-full border border-white bg-white/10 text-white hover:bg-white hover:text-black font-bold transition-all">COOL
+                DOWN</button>
+        </div>
+
+        <!-- GAME AREA -->
+        <div class="bg-gray-900/50 border border-gray-800 rounded-3xl p-8 min-h-[500px] relative overflow-hidden">
+
+            <!-- MEMORY GAME -->
+            <div id="game-memory" class="game-section">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold brand-font mb-2">MEMORY RACER</h2>
+                    <p class="text-gray-400 text-sm">Match the racing icons to tune your focus.</p>
+                    <div class="mt-4 text-neon-blue text-xl font-mono">Moves: <span id="memory-moves">0</span></div>
+                    <button onclick="initMemoryGame()"
+                        class="mt-4 px-4 py-2 bg-gray-800 rounded hover:bg-gray-700">Restart Race</button>
+                </div>
+                <div class="grid grid-cols-4 gap-4 max-w-md mx-auto" id="memory-grid">
+                    <!-- Cards injected here -->
+                </div>
+            </div>
+
+            <!-- WHACK A MOLE (ENGINE REPAIR) -->
+            <div id="game-whack" class="game-section hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold brand-font mb-2 text-neon-red">ENGINE REPAIR</h2>
+                    <p class="text-gray-400 text-sm">Click the glitches (🔴) before they disappear!</p>
+                    <div class="flex justify-center gap-8 mt-4 font-mono text-xl">
+                        <div class="text-neon-yellow">Score: <span id="whack-score">0</span></div>
+                        <div class="text-gray-400">Time: <span id="whack-time">30</span>s</div>
+                    </div>
+                    <button onclick="startWhackGame()" id="whack-start-btn"
+                        class="mt-4 px-6 py-2 bg-neon-red text-black font-bold rounded hover:bg-red-500 shadow-[0_0_15px_rgba(255,0,60,0.5)]">START
+                        ENGINE</button>
+                </div>
+                <div class="grid grid-cols-3 gap-4 max-w-md mx-auto cursor-crosshair">
+                    <div class="mole-hole">
+                        <div class="mole" onclick="bonk(event)">⚠️</div>
+                    </div>
+                    <div class="mole-hole">
+                        <div class="mole" onclick="bonk(event)">⚠️</div>
+                    </div>
+                    <div class="mole-hole">
+                        <div class="mole" onclick="bonk(event)">⚠️</div>
+                    </div>
+                    <div class="mole-hole">
+                        <div class="mole" onclick="bonk(event)">⚠️</div>
+                    </div>
+                    <div class="mole-hole">
+                        <div class="mole" onclick="bonk(event)">⚠️</div>
+                    </div>
+                    <div class="mole-hole">
+                        <div class="mole" onclick="bonk(event)">⚠️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BREATHING EXERCISE -->
+            <div id="game-breathing"
+                class="flex flex-col items-center justify-center h-full hidden game-section text-center">
+                <h2 class="text-3xl brand-font mb-8">COOL DOWN LAP</h2>
+                <div class="relative flex items-center justify-center">
+                    <div class="w-64 h-64 border-4 border-white rounded-full flex items-center justify-center relative">
+                        <div id="breath-circle"
+                            class="w-full h-full bg-blue-500/20 rounded-full transition-all duration-[4000ms] ease-in-out transform scale-50">
+                        </div>
+                        <span id="breath-text" class="absolute text-2xl font-bold">BREATHE IN</span>
+                    </div>
+                </div>
+                <p class="mt-8 text-gray-400 max-w-md">Sync your breathing with the circle. Inhale as it expands, exhale
+                    as it contracts.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // --- TAB SWITCHING ---
+        let breathingInterval = null;
+
+        function switchGame(gameId) {
+            document.querySelectorAll('.game-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById('game-' + gameId).classList.remove('hidden');
+
+            // Clear breathing interval if leaving breathing page
+            if (gameId !== 'breathing' && breathingInterval) {
+                clearInterval(breathingInterval);
+                breathingInterval = null;
+            }
+
+            // simple visual update for buttons
+            const buttons = ['memory', 'whack', 'breathing'];
+            buttons.forEach(b => {
+                const btn = document.getElementById('tab-' + b);
+                if (b === gameId) {
+                    btn.classList.add('ring-2', 'ring-white');
+                } else {
+                    btn.classList.remove('ring-2', 'ring-white');
+                }
+            });
+
+            if (gameId === 'breathing') startBreathing();
+        }
+
+        // --- MEMORY GAME ---
+        const memoryIcons = ['🏎️', '🏁', '🔧', '⛽', '🚦', '🏆', '🚗', '🛑'];
+        let memoryCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+
+        function initMemoryGame() {
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+            matchedPairs = 0;
+            moves = 0;
+            document.getElementById('memory-moves').innerText = moves;
+
+            memoryCards = [...memoryIcons, ...memoryIcons]
+                .sort(() => Math.random() - 0.5);
+
+            memoryCards.forEach((icon, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-gray-800 h-24 rounded-xl flex items-center justify-center text-4xl cursor-pointer transform transition-transform duration-300 hover:scale-105 border border-gray-700';
+                card.dataset.index = index;
+                card.dataset.icon = icon;
+                card.innerHTML = '<span class="opacity-0 transition-opacity duration-300">' + icon + '</span>';
+                card.onclick = () => flipCard(card);
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+            card.classList.add('flipped', 'bg-gray-700');
+            card.firstChild.classList.remove('opacity-0');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('memory-moves').innerText = moves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [c1, c2] = flippedCards;
+            if (c1.dataset.icon === c2.dataset.icon) {
+                c1.classList.add('matched', 'border-neon-blue');
+                c2.classList.add('matched', 'border-neon-blue');
+                matchedPairs++;
+                flippedCards = [];
+                if (matchedPairs === memoryIcons.length) setTimeout(() => alert('RACE COMPLETE! GREAT FOCUS MY LOVE! Let\'s continue our life race'), 500);
+            } else {
+                setTimeout(() => {
+                    c1.classList.remove('flipped', 'bg-gray-700');
+                    c1.firstChild.classList.add('opacity-0');
+                    c2.classList.remove('flipped', 'bg-gray-700');
+                    c2.firstChild.classList.add('opacity-0');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // --- WHACK A MOLE ---
+        let lastHole;
+        let timeUp = false;
+        let score = 0;
+        let scoreElem = document.getElementById('whack-score');
+
+        function randomTime(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+
+        function randomHole(holes) {
+            const idx = Math.floor(Math.random() * holes.length);
+            const hole = holes[idx];
+            if (hole === lastHole) return randomHole(holes);
+            lastHole = hole;
+            return hole;
+        }
+
+        function peep() {
+            const holes = document.querySelectorAll('.mole-hole');
+            if (holes.length === 0) return;
+            const time = randomTime(500, 1500);
+            const hole = randomHole(holes);
+            const mole = hole.querySelector('.mole');
+
+            mole.classList.add('up');
+            setTimeout(() => {
+                mole.classList.remove('up');
+                if (!timeUp) peep();
+            }, time);
+        }
+
+        function startWhackGame() {
+            if (document.getElementById('whack-start-btn').innerText === 'RUNNING...') return;
+
+            scoreElem.innerText = 0;
+            score = 0;
+            timeUp = false;
+            document.getElementById('whack-start-btn').innerText = 'RUNNING...';
+            document.getElementById('whack-start-btn').classList.add('opacity-50', 'cursor-not-allowed');
+
+            peep();
+
+            let timeLeft = 30;
+            const timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('whack-time').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timeUp = true;
+                    document.getElementById('whack-start-btn').innerText = 'START ENGINE';
+                    document.getElementById('whack-start-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+                    alert('ENGINE REPAIRED! SCORE: ' + score + '  Mmmmwah💋');
+                }
+            }, 1000);
+        }
+
+        function bonk(e) {
+            if (!e.isTrusted) return;
+            score++;
+            e.target.classList.remove('up');
+            scoreElem.innerText = score;
+        }
+
+        // --- BREATHING ---
+        function startBreathing() {
+            if (breathingInterval) clearInterval(breathingInterval);
+
+            const circle = document.getElementById('breath-circle');
+            const text = document.getElementById('breath-text');
+
+            function breathCycle() {
+                // Inhale
+                text.innerText = "BREATHE IN";
+                circle.classList.remove('scale-50');
+                circle.classList.add('scale-100', 'bg-blue-500/40');
+
+                setTimeout(() => {
+                    // Exhale
+                    text.innerText = "BREATHE OUT";
+                    circle.classList.remove('scale-100', 'bg-blue-500/40');
+                    circle.classList.add('scale-50');
+                }, 4000); // 4s inhale
+            }
+
+            breathCycle();
+            breathingInterval = setInterval(breathCycle, 8000); // 4s in + 4s out = 8s
+        }
+
+        // Init defaults
+        initMemoryGame();
+    </script>
+</body>
+
+</html>

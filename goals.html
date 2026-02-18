@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Roadmap | Vinnath's Goals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dashboard-black': '#0a0a0a',
+                        'carbon-fiber': '#141414',
+                        'neon-blue': '#00f3ff',
+                        'neon-red': '#ff003c',
+                        'rpm-green': '#39ff14',
+                    },
+                    fontFamily: {
+                        'sans': ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                        'display': ['Orbitron', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'road-texture': "repeating-linear-gradient(90deg, #1a1a1a 0px, #1a1a1a 20px, #0a0a0a 20px, #0a0a0a 40px)",
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+        }
+
+        .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .checkbox:checked+div {
+            background-color: #39ff14;
+            border-color: #39ff14;
+        }
+
+        .checkbox:checked+div svg {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body class="bg-dashboard-black min-h-screen text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html"
+                        class="brand-font text-2xl font-bold text-neon-blue tracking-tighter hover:text-white transition-colors">VINNATH<span
+                            class="text-white">.OS</span></a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html"
+                            class="text-gray-300 hover:text-neon-blue hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dashboard</a>
+                        <a href="love.html"
+                            class="text-gray-300 hover:text-neon-red hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">Co-Pilot</a>
+                        <a href="goals.html"
+                            class="bg-gray-900 text-rpm-green px-3 py-2 rounded-md text-sm font-medium border border-rpm-green shadow-[0_0_10px_rgba(57,255,20,0.3)]">The
+                            Roadmap</a>
+                        <a href="games.html"
+                            class="text-gray-300 hover:text-yellow-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">Pit
+                            Stop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-12 max-w-4xl mx-auto px-4">
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1
+                class="text-4xl md:text-6xl font-black brand-font mb-4 text-transparent bg-clip-text bg-gradient-to-r from-rpm-green to-teal-400">
+                CHAMPIONSHIP ROADMAP</h1>
+            <p class="text-gray-400 text-lg">"Focus on the step in front of you, not the whole mountain."</p>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="glass-panel p-6 rounded-2xl mb-12 relative overflow-hidden">
+            <div class="flex justify-between items-end mb-2">
+                <span class="text-gray-400 font-mono text-sm">RACE COMPLETION</span>
+                <span class="text-4xl font-bold brand-font text-rpm-green" id="progress-text">0%</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
+                <div id="progress-bar"
+                    class="bg-rpm-green h-4 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_#39ff14]"
+                    style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Goals List -->
+        <div class="space-y-4" id="goals-container">
+            <!-- Items injected via JS -->
+        </div>
+
+        <!-- Add New Goal -->
+        <div class="mt-8 flex gap-4">
+            <input type="text" id="new-goal-input" placeholder="Add a new checkpoint..."
+                class="flex-1 bg-gray-900 border border-gray-700 text-white p-4 rounded-lg focus:outline-none focus:border-rpm-green transition-colors">
+            <button onclick="addGoal()"
+                class="bg-rpm-green text-black font-bold px-8 rounded-lg hover:bg-green-400 transition-colors shadow-[0_0_15px_rgba(57,255,20,0.4)]">ADD</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Initial Data
+        const defaultGoals = [
+            { id: 1, text: "Wake up with a positive mindset", completed: false },
+            { id: 2, text: "Drink a glass of water first thing", completed: false },
+            { id: 3, text: "Spend 10 minutes meditating or breathing", completed: false },
+            { id: 4, text: "Write down 3 things I'm grateful for", completed: false },
+            { id: 5, text: "Read 5 pages of a book", completed: false },
+            { id: 6, text: "Go for a short walk or exercise", completed: false },
+        ];
+
+        // Load from LocalStorage or use default
+        let goals = JSON.parse(localStorage.getItem('vinnathGoals')) || defaultGoals;
+
+        function saveGoals() {
+            localStorage.setItem('vinnathGoals', JSON.stringify(goals));
+            renderGoals();
+            updateProgress();
+        }
+
+        function toggleGoal(id) {
+            goals = goals.map(g => {
+                if (g.id === id) return { ...g, completed: !g.completed };
+                return g;
+            });
+            saveGoals();
+        }
+
+        function deleteGoal(id) {
+            goals = goals.filter(g => g.id !== id);
+            saveGoals();
+        }
+
+        function addGoal() {
+            const input = document.getElementById('new-goal-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const newGoal = {
+                id: Date.now(),
+                text: text,
+                completed: false
+            };
+            goals.push(newGoal);
+            input.value = '';
+            saveGoals();
+        }
+
+        function updateProgress() {
+            const total = goals.length;
+            const completed = goals.filter(g => g.completed).length;
+            const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progress-text').innerText = `${percentage}%`;
+        }
+
+        function renderGoals() {
+            const container = document.getElementById('goals-container');
+            container.innerHTML = '';
+
+            goals.forEach(goal => {
+                const div = document.createElement('div');
+                div.className = `glass-panel p-4 rounded-xl flex items-center justify-between group transform transition-all duration-300 hover:translate-x-1 ${goal.completed ? 'border-rpm-green bg-gray-900/50' : 'border-gray-800'}`;
+
+                div.innerHTML = `
+                    <div class="flex items-center gap-4 cursor-pointer flex-1" onclick="toggleGoal(${goal.id})">
+                        <div class="relative">
+                            <input type="checkbox" class="checkbox hidden" ${goal.completed ? 'checked' : ''}>
+                            <div class="w-6 h-6 border-2 border-gray-500 rounded flex items-center justify-center transition-colors">
+                                <svg class="w-4 h-4 text-black opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                        </div>
+                        <span class="${goal.completed ? 'text-gray-500 line-through' : 'text-white'} text-lg transition-colors">${goal.text}</span>
+                    </div>
+                    <button onclick="deleteGoal(${goal.id})" class="text-gray-600 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity px-2">
+                        ✕
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Init
+        renderGoals();
+        updateProgress();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Co-Pilot | Vinnath & Hasini</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dashboard-black': '#0a0a0a',
+                        'carbon-fiber': '#141414',
+                        'neon-blue': '#00f3ff',
+                        'neon-red': '#ff003c',
+                        'rpm-green': '#39ff14',
+                    },
+                    fontFamily: {
+                        'sans': ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                        'display': ['Orbitron', 'sans-serif'],
+                        'handwriting': ['Dancing Script', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'love-pattern': "linear-gradient(to bottom, rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 1)), url('https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .love-font {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 0, 60, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .neon-text-red {
+            text-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c;
+        }
+
+        .heart-beat {
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.1);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.1);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-dashboard-black text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html"
+                        class="brand-font text-2xl font-bold text-neon-blue tracking-tighter hover:text-white transition-colors">VINNATH<span
+                            class="text-white">.OS</span></a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html"
+                            class="text-gray-300 hover:text-neon-blue hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Dashboard</a>
+                        <a href="love.html"
+                            class="bg-gray-900 text-neon-red px-3 py-2 rounded-md text-sm font-medium border border-neon-red shadow-[0_0_10px_rgba(255,0,60,0.3)]">Co-Pilot</a>
+                        <a href="goals.html"
+                            class="text-gray-300 hover:text-rpm-green hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">The
+                            Roadmap</a>
+                        <a href="games.html"
+                            class="text-gray-300 hover:text-yellow-400 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Pit
+                            Stop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="relative pt-32 pb-12 lg:pt-48 lg:pb-24 bg-love-pattern bg-cover bg-center bg-fixed">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="brand-font text-5xl md:text-7xl font-bold mb-6 text-white neon-text-red">
+                DRIVER & CO-PILOT
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 font-light italic">
+                "No matter how fast you go, I'm always right beside you."
+            </p>
+        </div>
+    </header>
+
+    <!-- Personal Letter Section -->
+    <section class="py-20 bg-dashboard-black relative">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="glass-panel p-8 md:p-12 rounded-2xl relative">
+                <!-- Decorative quotes -->
+                <div class="absolute -top-6 -left-6 text-6xl text-neon-red opacity-50 font-serif">"</div>
+
+                <h2 class="text-3xl font-bold mb-8 text-center brand-font text-neon-red">Message from Hasini</h2>
+
+                <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed font-light">
+                    <p class="mb-6">
+                        Hey Vinnath,
+                    </p>
+                    <p class="mb-6">
+                        I know the road has been a bit bumpy lately. Sometimes visibility looks low, and the engine
+                        feels tired.
+                        I know I sometimes get frustrated when things aren't perfect, but I want you to know something
+                        important.
+                    </p>
+                    <p class="mb-6">
+                        I believe in you. More than you believe in yourself right now. You are the driver of this
+                        amazing journey, and every great racer has pit stops, tough laps, and mechanical issues. It
+                        doesn't mean the race is over. It just means you're human.
+                    </p>
+                    <p class="mb-6">
+                        I love you more than words can say. I'm here to navigate, to fuel you up, and to cheer you on at
+                        the finish line.
+                        Let's win this race called life, together.
+                    </p>
+                    <p class="text-right mt-10 love-font text-3xl text-neon-red transform -rotate-2">
+                        Your Hasini Wathsara
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons Grid -->
+    <section class="py-20 bg-gradient-to-b from-dashboard-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center text-3xl md:text-4xl font-bold mb-16 brand-font text-white">WHY YOU ARE MY CHAMPION
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Reason 1 -->
+                <div
+                    class="glass-panel p-6 rounded-lg text-center hover:bg-gray-800 transition-all duration-300 border-t-2 border-neon-red">
+                    <div
+                        class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        ❤️</div>
+                    <h3 class="font-bold text-lg mb-2">Your Heart</h3>
+                    <p class="text-gray-400 text-sm">Even when you're down, you care so deeply.</p>
+                </div>
+
+                <!-- Reason 2 -->
+                <div
+                    class="glass-panel p-6 rounded-lg text-center hover:bg-gray-800 transition-all duration-300 border-t-2 border-neon-red">
+                    <div
+                        class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        🧠</div>
+                    <h3 class="font-bold text-lg mb-2">Your Potential</h3>
+                    <p class="text-gray-400 text-sm">You have so much untpped power waiting to be unleashed.</p>
+                </div>
+
+                <!-- Reason 3 -->
+                <div
+                    class="glass-panel p-6 rounded-lg text-center hover:bg-gray-800 transition-all duration-300 border-t-2 border-neon-red">
+                    <div
+                        class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                        🛡️</div>
+                    <h3 class="font-bold text-lg mb-2">My Protector</h3>
+                    <p class="text-gray-400 text-sm">I feel safe when I'm riding with you.</p>
+                </div>
+
+                <!-- Reason 4 -->
+                <div
+                    class="glass-panel p-6 rounded-lg text-center hover:bg-gray-800 transition-all duration-300 border-t-2 border-neon-red">
+                    <div
+                        class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl heart-beat">
+                        🏎️</div>
+                    <h3 class="font-bold text-lg mb-2">Us vs. World</h3>
+                    <p class="text-gray-400 text-sm">We make the best team on the track.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-900 text-center">
+        <p class="text-gray-500 font-mono text-sm">FOREVER YOUR CO-PILOT</p>
+    </footer>
+
+</body>
+
+</html>
